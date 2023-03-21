@@ -1,0 +1,49 @@
+POST http://localhost/dev/playground/mahasiswa/index.php HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+{
+    "nama": "Samlekom",
+    "dateOfBirth": "2023-03-06",
+    "address": "Jl. Kebon Jeruk",
+    "studentNumber": "1234567890"
+}
+
+### Post
+POST https://dev1.unimed.ac.id/akbarganteng/index.php HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+[
+  {
+    "id": "19",
+    "name": "Samlekom",
+    "dateOfBirth": "2023-03-06",
+    "address": "Jl. Kebon Jeruk",
+    "studentNumber": "1234567890",
+    "email": "awek@gmail.com"
+  }
+]
+
+
+### Insert 2 Mahasiswa
+POST http://localhost/dev/playground/mahasiswa/index.php HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+
+[
+  {
+    "nama": "Stipen Anugrah",
+    "tanggal_lahir": "2023-03-06",
+    "alamat": "Jl. Kebon Jeruk",
+    "nim": "1234567890",
+    "email": "stipenanugrah@example.com"
+  },
+  {
+    "nama": "Stipen awek",
+    "tanggal_lahir": "2020-03-06",
+    "alamat": "Jl. Kebon Apel",
+    "nim": "1293232390",
+    "email": "stipenawek@example.com"
+  }
+]

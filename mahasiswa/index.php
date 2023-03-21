@@ -1,0 +1,43 @@
+<?php
+
+include "../util/ApplicationConfig.php";
+include "../util/Database.php";
+include "MahasiswaRepository.php";
+include "MahasiswaService.php";
+include "MahasiswaController.php";
+
+$config = ApplicationConfig::get();
+$connection = Database::getInstance($config);
+$repository = new MahasiswaRepository($connection);
+$service = new MahasiswaService($repository);
+$controller = new MahasiswaController($service);
+
+header('Content-Type: application/json');
+
+$method = $_SERVER['REQUEST_METHOD'];
+if ($method === "GET") {
+    if (array_key_exists('id', $_GET)) {
+        $id = $_GET['id'];
+        $controller->getById($id);
+        return;
+    }
+
+    $page = 0;
+    $limitPerPage = 20;
+    if (array_key_exists('page', $_GET)) {
+        $page = $_GET['page'];
+    }
+    $controller->getAll($page, $limitPerPage);
+    return;
+}
+
+if ($method === "POST") {
+    $data = json_decode(file_get_contents('php://input'), true);
+    if (count($data) == 1) {
+        $controller->insert($data);
+        return;
+    }
+
+    $controller->insertAll($data);
+    return;
+}
